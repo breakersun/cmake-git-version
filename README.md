@@ -3,28 +3,17 @@ Example C / C++ project that uses CMake to build and git for version numbers
 
 ## Dependencies
 
-* CMake
 * Git
-* Python (2.7 / 3.5)
+* Python (>=3.5)
+* [GitVersion](https://gitversion.net/)
 
 ## Usage
 
-Create a build directory, generate the makefiles and build
+Manually:
+    python gitversion2c.py commithash.c.gitver.template -o version.c
 
-    mkdir build
-    cmake ..
-    make
+You can also integrate with make or cmake, put it into some pre-build step.
 
-If the current working tree is dirty, it will be printed to the console when being built
+## Philosophy & Concepts
 
-![Dirty Tree](/images/dirty-tree.png)
-
-To increase the version number, just tag the repository
-
-    git tag -a "1.2.3"
-
-Then, rebuild
-
-    make
-
-![New Tag](/images/new-tag.png)
+[Semantic Versioning](https://semver.org/) a standard for describing software
