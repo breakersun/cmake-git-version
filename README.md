@@ -1,5 +1,7 @@
+
 # Gitversion2C
-Example C / C++ project that uses CMake to build and git for version numbers
+A useful script for automatically updating the version number in the C/C++ source code.
+
 
 ## Dependencies
 
