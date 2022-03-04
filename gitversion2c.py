@@ -46,7 +46,7 @@ class OutputFormatter(object):
         self.info_json['friendly_version'] \
             = f"{info_json.get('FullSemVer')}" \
               f"+rev{info_json.get('ShortSha')}" \
-              f"-{'dirty' if info_json.get('UncommittedChanges') else ''}" \
+              f"{'-dirty' if info_json.get('UncommittedChanges') else ''}" \
 
         with open(self.template_file, 'r') as _template_file:
             _template = _template_file.read()
