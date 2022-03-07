@@ -2,6 +2,7 @@ import argparse
 import json
 import logging
 import shlex
+import shutil
 import subprocess
 import os
 
@@ -89,10 +90,16 @@ def rename_artifact(args):
     _logger.info(f"Renaming artifact {args.artifact}")
     _parser = GitversionParser()
     _parser.parse()
-    friendly_version = OutputFormatter(None).generate_friendly_version(_parser.info_json)
+    friendly_version = f"{_parser.info_json.get('FullSemVer')}"\
+                       f".Branch.{_parser.info_json.get('BranchName')}" \
+                       f".Sha.{_parser.info_json.get('ShortSha')}" \
+                       f"{'-dirty' if _parser.info_json.get('UncommittedChanges') else ''}"
     path, name = os.path.split(args.artifact)
     suffix = name.split('.')[-1]
     new_name = os.path.join(path, f"{args.projectname}-{friendly_version}.{suffix}")
+    if os.path.exists(new_name):
+        _logger.info(f"File {new_name} already exists, remove it first")
+        os.remove(new_name)
     os.rename(args.artifact, new_name)
 
 
