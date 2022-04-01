@@ -13,7 +13,8 @@ A useful script for automatically updating the version number in the C/C++ sourc
 
 Manually:
 
-    `python gitversion2c.py commithash.c.gitver.template -o version.c`
+    `python gitversion2c.py generate commithash.c.gitver.template -o version.c`
+    `python gitversion2c.py rename path/to/artifact -proj fancy_name`
 
 You can also integrate with make or cmake, put it into some pre-build step.
 
