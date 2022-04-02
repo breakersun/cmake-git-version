@@ -91,7 +91,7 @@ def rename_artifact(args):
     _parser = GitversionParser()
     _parser.parse()
     friendly_version = f"{_parser.info_json.get('FullSemVer')}"\
-                       f"+Branch.{_parser.info_json.get('BranchName')}" \
+                       f"+Branch.{_parser.info_json.get('BranchName').replace('/', '_')}" \
                        f".Sha.{_parser.info_json.get('ShortSha')}" \
                        f"{'-dirty' if _parser.info_json.get('UncommittedChanges') else ''}"
     path, name = os.path.split(args.artifact)
